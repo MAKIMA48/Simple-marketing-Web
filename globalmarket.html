@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Market</title>
+<style>
+body{margin:0;font-family:'Segoe UI',sans-serif;background:#fff0f5;color:#333;text-align:center;scroll-behavior:smooth;}
+header,footer{background:#d81b60;color:#fff;padding:20px;position:sticky;top:0;z-index:100;}
+nav a{margin:0 15px;color:#fff;text-decoration:none;font-weight:bold;transition:0.3s;}
+nav a:hover{color:#ffd6e8;transform:scale(1.1);}
+section{padding:50px 20px;display:none;opacity:0;transform:translateY(20px);transition:0.5s;}
+section.active{display:block;opacity:1;transform:translateY(0);}
+h2{font-size:2em;margin-bottom:15px;color:#d81b60;}
+img{width:100%;max-width:400px;border-radius:15px;margin:20px auto;display:block;transition:0.3s;}
+img:hover{transform:scale(1.05);box-shadow:0 10px 20px rgba(216,27,96,0.3);}
+button,input,select{padding:12px;margin:10px 0;border-radius:8px;border:1px solid #d81b60;width:100%;max-width:250px;transition:0.3s;}
+button{background:#d81b60;color:#fff;border:none;cursor:pointer;}
+button:hover{background:#ad1457;transform:translateY(-3px);}
+ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:20px;}
+li{background:#ffe6f0;padding:15px;border-radius:15px;max-width:200px;transition:0.3s;cursor:pointer;}
+li:hover{transform:scale(1.05);box-shadow:0 8px 15px rgba(216,27,96,0.3);}
+footer{font-size:0.9em;letter-spacing:1px;}
+</style>
+</head>
+<body>
+
+<header>
+<h2 style="color:#fff;">GLOBAL MARKET</h2>
+<nav>
+<a href="javascript:void(0)" onclick="show('home')">Home</a>
+<a href="javascript:void(0)" onclick="show('products')">Products</a>
+<a href="javascript:void(0)" onclick="show('delivery')">Delivery</a>
+<a href="javascript:void(0)" onclick="show('contact')">Contact</a>
+</nav>
+</header>
+
+<section id="home" class="active">
+<h2>Welcome to GLOBAL WORLD!</h2>
+<p>COME TO US AND DISCOVER AMAZING PRODUCTS!</p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Andover_-_Supermarket_-_geograph.org.uk_-_1056048.jpg" alt="Market">
+<button onclick="show('delivery')">Book Delivery</button>
+</section>
+
+<section id="products">
+<h2>Our Products</h2>
+<ul>
+<li onclick="showItems('Grocery')">Grocery
+<img src="https://imgstaticcontent.lbb.in/lbbnew/wp-content/uploads/sites/1/2018/05/09131032/090518lemarch.jpg" alt="Grocery"></li>
+<li onclick="showItems('Fruits')">Fruits
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1BjvKsY9gXZwu4ztc24Z6qKoR0e9hvBZgwg&s" alt="Fruits"></li>
+<li onclick="showItems('Stationery')">Stationery
+<img src="https://5.imimg.com/data5/SELLER/Default/2024/2/393872854/IG/LO/SQ/66596346/stan.jpg" alt="Stationery"></li>
+<li onclick="showItems('Dresses')">Dresses
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO1TaT6kWZff91YxX4EhxHNbkqd9ys80WoMA&s" alt="Dresses"></li>
+</ul>
+</section>
+
+<section id="items">
+  <h2 id="items-title"></h2>
+  <ul id="items-list"></ul>
+  <button onclick="show('products')">Back</button>
+</section>
+
+<section id="delivery">
+<h2>Book Your Delivery</h2>
+<form onsubmit="submitForm(event)">
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Your Email" required>
+<input type="text" placeholder="Your Address" required>
+<select required>
+<option value="">Select Product</option>
+<option>Grocery</option>
+<option>Fruits</option>
+<option>Dresses</option>
+<option>Stationery</option>
+</select>
+<button type="submit">Submit</button>
+</form>
+</section>
+
+<section id="contact">
+<h2>Contact Us</h2>
+<p>Email: globalmarket@gmail.com</p>
+<p>Phone: +91 123 456 7890</p>
+</section>
+
+<footer>© 2025 GLOBAL MARKET | Tirunelveli</footer>
+
+<script>
+function show(id){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+const productData = {
+  Grocery: ["Rice","Wheat","Sugar","Salt","Oil","Tea","Coffee","Spices","Pulses","Flour"],
+  Fruits: ["Apple","Banana","Mango","Orange","Grapes","Pineapple","Papaya","Watermelon","Strawberry","Pomegranate"],
+  Stationery: ["Notebook","Pen","Pencil","Eraser","Sharpener","Marker","Ruler","Glue","Stapler","Scissors"],
+  Dresses: ["Shirt","T-shirt","Jeans","Kurta","Saree","Jacket","Skirt","Dress","Shorts","Hoodie"]
+};
+
+function showItems(category){
+  document.getElementById("items-title").innerText = category + " Items";
+  const list = document.getElementById("items-list");
+  list.innerHTML = "";
+  productData[category].forEach(item => {
+    const li = document.createElement("li");
+    li.innerText = item;
+    list.appendChild(li);
+  });
+  show('items');
+}
+
+function submitForm(e){
+  e.preventDefault();
+  alert("Submitted successfully!");
+}
+</script>
+
+</body>
+</html>
+
